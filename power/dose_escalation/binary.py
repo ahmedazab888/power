@@ -2,13 +2,12 @@ import scipy.stats as stats
 import math
 
 
-def linear_contrasts(contrast=None,
-                     response=None,
-                     proportion=None,
-                     stdev=None,
-                     n=None,
-                     alpha=None,
-                     power=None):
+def binary(contrast=None,
+           response=None,
+           proportion=None,
+           n=None,
+           alpha=None,
+           power=None):
     # Check inputs
     if n is None:
         if alpha is None or power is None:
@@ -42,9 +41,6 @@ def linear_contrasts(contrast=None,
     if sum(contrast) != 0:
         raise ValueError("Contrast must sum to 1")
 
-    if stdev <= 0:
-        raise ValueError("Stdev must be positive")
-
     if proportion is None:
         proportion = [1 / n_group] * n_group
     else:
@@ -57,20 +53,31 @@ def linear_contrasts(contrast=None,
     c_by_f = sum([(c * c) / f for c, f in zip(contrast, proportion)])
     epsilon = sum([c * m for c, m in zip(contrast, response)])
     distribution = stats.norm()
+
+    mean_p = sum([p * f for p, f in zip(response, proportion)])
+    alpha_factor = c_by_f * mean_p * (1 - mean_p)
+    alpha_factor = math.sqrt(alpha_factor)
+    beta_factor = sum([(c * c) / f * p * (1 - p) for c, f, p in zip(contrast, proportion, response)])
+    beta_factor = math.sqrt(beta_factor)
+
     if unknown == "n":
         z_alpha = distribution.ppf(1 - alpha)
         z_beta = distribution.ppf(power)
-        n = ((z_alpha + z_beta) * stdev / epsilon)**2 * c_by_f
+
+        n = ((z_alpha * alpha_factor + z_beta * beta_factor) / epsilon)**2
         n = math.ceil(n)
-        z_beta = math.sqrt(n / c_by_f) * epsilon / stdev - z_alpha
+        z_beta = math.sqrt(n) * epsilon - z_alpha * alpha_factor
+        z_beta /= beta_factor
         power = stats.norm.cdf(z_beta)
     elif unknown == "alpha":
         z_beta = distribution.ppf(power)
-        z_alpha = math.sqrt(n / c_by_f) * epsilon / stdev - z_beta
+        z_alpha = math.sqrt(n) * epsilon - z_beta * beta_factor
+        z_alpha /= alpha_factor
         alpha = 1 - stats.norm.cdf(z_alpha)
     elif unknown == "power":
         z_alpha = distribution.ppf(1 - alpha)
-        z_beta = math.sqrt(n / c_by_f) * epsilon / stdev - z_alpha
+        z_beta = math.sqrt(n) * epsilon - z_alpha * alpha_factor
+        z_beta /= beta_factor
         power = stats.norm.cdf(z_beta)
 
     return n, power, alpha
