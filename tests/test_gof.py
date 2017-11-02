@@ -1,12 +1,12 @@
 """ Test cases for the power.gof module """
 
 # import pytest
-from skdesign.power.gof import (Pearson,
-                                PearsonIndependance,
-                                CMH,
-                                StuartMaxwell,
-                                McNemar,
-                                CarryOverEffect)
+from power.gof import (Pearson,
+                       PearsonIndependance,
+                       CMH,
+                       StuartMaxwell,
+                       McNemar,
+                       CarryOverEffect)
 
 
 def test_pearson():

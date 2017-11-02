@@ -1,5 +1,5 @@
-from skdesign.power.distributions import (Normal, 
-                                          Distribution)
+from power.distributions import (Normal,
+                                 Distribution)
 
 
 def test_normal():

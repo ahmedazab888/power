@@ -1,5 +1,5 @@
-# from skdesign.power.time_to_event import (Cox,
-#                                           Exponential)
+# from power.time_to_event import (Cox,
+#                                  Exponential)
 
 
 # def test_cox():

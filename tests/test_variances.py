@@ -1,12 +1,12 @@
-from skdesign.power.variances import (IntraSubjectParallel,
-                                      IntraSubjectCrossover,
-                                      IntraSubjectCV,
-                                      InterSubjectParallel,
-                                      InterSubjectCrossover,
-                                      TotalParallelNoReplication,
-                                      TotalParallelReplication,
-                                      Total2By2Crossover,
-                                      Total2By2MCrossover)
+from power.variances import (IntraSubjectParallel,
+                             IntraSubjectCrossover,
+                             IntraSubjectCV,
+                             InterSubjectParallel,
+                             InterSubjectCrossover,
+                             TotalParallelNoReplication,
+                             TotalParallelReplication,
+                             Total2By2Crossover,
+                             Total2By2MCrossover)
 
 
 def test_intra_subject_parallel():

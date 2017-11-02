@@ -1,7 +1,7 @@
-from skdesign.power.bioequivalence import (Average,
-                                           Individual,
-                                           InVitro,
-                                           Population)
+from power.bioequivalence import (Average,
+                                  Individual,
+                                  InVitro,
+                                  Population)
 import math
 
 

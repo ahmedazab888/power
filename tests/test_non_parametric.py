@@ -1,6 +1,6 @@
-from skdesign.power.non_parametric import (OneSample,
-                                           TwoSample,
-                                           Independance)
+from power.non_parametric import (OneSample,
+                                  TwoSample,
+                                  Independance)
 
 
 def test_one_sample():

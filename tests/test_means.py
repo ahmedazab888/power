@@ -1,11 +1,11 @@
 """ Test cases for the power.means module """
 
 # import pytest
-from skdesign.power.means import (OneSample,
-                                  TwoSampleParallel,
-                                  TwoSampleCrossover,
-                                  OneWayAnova,
-                                  MultiSampleWilliams)
+from power.means import (OneSample,
+                         TwoSampleParallel,
+                         TwoSampleCrossover,
+                         OneWayAnova,
+                         MultiSampleWilliams)
 
 
 def test_one_sample():

@@ -1,26 +1,26 @@
-from skdesign.power.proportions import (Binomial,
-                                        Fisher,
-                                        # MultiSampleWilliams,
-                                        OneSample,
-                                        OneWayAnova,
-                                        RelativeRiskParallel,
-                                        TwoSampleCrossover,
-                                        TwoSampleParallel)
+from power.proportions import (Binomial,
+                               Fisher,
+                               # MultiSampleWilliams,
+                               OneSample,
+                               OneWayAnova,
+                               RelativeRiskParallel,
+                               TwoSampleCrossover,
+                               TwoSampleParallel)
 
 
 def test_binomial():
     """ See 5.1.3 in Chow et al. for calculations """
-    # h = Binomial(alpha=0.05, power=0.8, p=0.3, p_0=0.1)
-    # h.calculate()
-    # assert h.n == 25
-    # assert h.power > 0.8
-    # assert h.alpha < 0.05
+    h = Binomial(alpha=0.05, power=0.8, p=0.3, p_0=0.1)
+    h.calculate()
+    assert h.n == 25
+    assert h.power > 0.8
+    assert h.alpha < 0.05
 
-    # h = Binomial(alpha=0.05, power=0.8, p=0.3, p_0=0.05, margin=0.05)
-    # h.calculate()
-    # assert h.n == 25
-    # assert h.power > 0.8
-    # assert h.alpha < 0.05
+    h = Binomial(alpha=0.05, power=0.8, p=0.3, p_0=0.05, margin=0.05)
+    h.calculate()
+    assert h.n == 25
+    assert h.power > 0.8
+    assert h.alpha < 0.05
 
 
 def test_fisher():
