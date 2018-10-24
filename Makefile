@@ -20,4 +20,4 @@ lint:
 	flake8 --exclude=env .
 
 test:
-	py.test power
+	py.test tests
